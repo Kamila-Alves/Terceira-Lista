@@ -1,32 +1,28 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <math.h>
 
-typedef struct investimento{
-	int meses;
-	double aporte;
-	double taxa;
-	double montante;
-} investimento;
+int main() {
+    int meses;
+    double aporte, taxa;
 
-investimento Entrada(){
-	investimento investimento;
-	scanf("%d %lf %lf",&investimento.meses,&investimento.aporte,&investimento.taxa);
-	return investimento;
-}
+    printf("");
+    scanf("%d", &meses);
+    printf("");
+    scanf("%lf", &aporte);
+    printf("");                                                                                                                                                               
+    scanf("%lf", &taxa);
 
-void calculaMontante(investimento investimento){
-	int i;
-	investimento.montante = 0;
-	for(i=1;i<=investimento.meses;i++){
-		investimento.montante += investimento.aporte;
-		investimento.montante *= 1+investimento.taxa;
-		printf("Montante ao fim do mes %d: R$ %.2lf\n",i,investimento.montante);
-	}
-}
 
-int main(){
-	investimento investimento = Entrada();
-	calculaMontante(investimento);
-	return 0;
+    if (meses < 1 || meses > 240 || aporte < 1 || aporte > 5000 || taxa < 0.01 || taxa > 0.2) {
+        printf("\n");
+        return 1;
+    }
+
+
+    for (int i = 1; i <= meses; i++) {
+        double montante = aporte * (1 + taxa) * ( pow(1 + taxa, i) - 1 )/taxa;
+        printf("Montante ao fim do mes %d: R$ %.2lf\n", i, montante);
+    }
+
+    return 0;
 }

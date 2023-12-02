@@ -1,51 +1,51 @@
 #include <stdio.h>
 #include <string.h>
 
-int obterValor(char romano);
+int Valor(char romano);
 
-void decimalParaBinario(int numDecimal) {
-    if (numDecimal > 1) {
-        decimalParaBinario(numDecimal / 2);
+void decimalPBinario(int Decimal) {
+    if (Decimal > 1) {
+        decimalPBinario(Decimal / 2);
  }
-    printf("%d", numDecimal % 2);
+    printf("%d", Decimal % 2);
 }
 
-int romanoParaDecimal(char numRomano[]) {
-    int numDecimal = 0;
+int romanoPDecimal(char numeroRomano[]) {
+    int Decimal = 0;
     int i;
 
-    for (i = 0; i < strlen(numRomano); i++) {
-        if (i < strlen(numRomano) - 1 && obterValor(numRomano[i]) < obterValor(numRomano[i + 1])) {
-            numDecimal -= obterValor(numRomano[i]);
+    for (i = 0; i < strlen(numeroRomano); i++) {
+        if (i < strlen(numeroRomano) - 1 && Valor(numeroRomano[i]) < Valor(numeroRomano[i + 1])) {
+            Decimal -= Valor(numeroRomano[i]);
         } else {
-            numDecimal += obterValor(numRomano[i]);
+            Decimal += Valor(numeroRomano[i]);
         }
  }
 
-    return numDecimal;
+    return Decimal;
 }
 
 int main() {
-    char numRomano[13];
-    scanf("%s", numRomano);
+    char numeroRomano[13];
+    scanf("%s", numeroRomano);
 
-    int numDecimal = romanoParaDecimal(numRomano);
+    int Decimal = romanoPDecimal(numeroRomano);
 
-    printf("%s na base 2: ", numRomano);
+    printf("%s na base 2: ", numeroRomano);
     
-    decimalParaBinario(numDecimal);
-    if (numDecimal == 0) {
+    decimalPBinario(Decimal);
+    if (Decimal == 0) {
         printf("0");
     }
     printf("\n");
 
-    printf("%s na base 10: %d\n", numRomano, numDecimal);
-     printf("%s na base 16: %x\n", numRomano, numDecimal);
+    printf("%s na base 10: %d\n", numeroRomano, Decimal);
+     printf("%s na base 16: %x\n", numeroRomano, Decimal);
 
     return 0;
 }
 
-int obterValor(char romano) {
+int Valor(char romano) {
     switch (romano) {
         case 'I':
             return 1;
